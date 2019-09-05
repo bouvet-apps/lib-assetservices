@@ -1,7 +1,10 @@
 plugins {
   id "com.enonic.xp.app" version "1.2.0"
   id "com.moowork.node" version "1.3.1"
+  id "maven"
 }
+
+group = 'com.github.bouvet-apps'
 
 compileJava.options.encoding = "UTF-8"
 
@@ -28,6 +31,8 @@ task npmBuild(type: NpmTask,
     outputs.dir "$buildDir/resources/main"
 }
 rootProject.tasks.getByName("build").dependsOn npmBuild
+
+rootProject.tasks.getByName("install").dependsOn rootProject.tasks.getByName("build")
 
 dependencies {
 	compile "com.enonic.xp:core-api:${xpVersion}"
