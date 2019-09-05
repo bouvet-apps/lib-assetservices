@@ -30,9 +30,7 @@ task npmBuild(type: NpmTask,
     inputs.dir 'src/main/resources'
     outputs.dir "$buildDir/resources/main"
 }
-rootProject.tasks.getByName("build").dependsOn npmBuild
-
-rootProject.tasks.getByName("install").dependsOn rootProject.tasks.getByName("build")
+rootProject.tasks.getByName("processResources").dependsOn npmBuild
 
 dependencies {
 	compile "com.enonic.xp:core-api:${xpVersion}"
